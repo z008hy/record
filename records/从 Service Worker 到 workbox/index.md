@@ -458,31 +458,31 @@ ___
 
 <a data-request="http://localhost:9999/stale-while-revalidate-random">Stale-While-Revalidate<a/>
 
-<img class="strategies" src="./assets/images/workbox-logo.svg" data-placeholder-src="./assets/images/workbox-logo.svg" data-test-src="./assets/images/workbox-stale-while-revalidate.png"/>
+<img class="strategies" src="./assets/images/workbox-stale-while-revalidate.png"/>
 
 ___
 
 <a data-request="http://localhost:9999/cache-first-random">Cache First<a/>
 
-<img class="strategies" src="./assets/images/workbox-logo.svg" data-placeholder-src="./assets/images/workbox-logo.svg" data-test-src="./assets/images/workbox-cache-first.png"/>
+<img class="strategies" src="./assets/images/workbox-cache-first.png"/>
 
 ___
 
 <a data-request="http://localhost:9999/network-first-random">Network First<a/>
 
-<img class="strategies" src="./assets/images/workbox-logo.svg" data-placeholder-src="./assets/images/workbox-logo.svg" data-test-src="./assets/images/workbox-network-first.png"/>
+<img class="strategies" src="./assets/images/workbox-network-first.png"/>
 
 ___
 
 <a data-request="http://localhost:9999/network-only-random">Network Only<a/>
 
-<img class="strategies" src="./assets/images/workbox-logo.svg" data-placeholder-src="./assets/images/workbox-logo.svg" data-test-src="./assets/images/workbox-network-only.png"/>
+<img class="strategies" src="./assets/images/workbox-network-only.png"/>
 
 ___
 
 Cache Only
 
-<img class="strategies" data-src="./assets/images/workbox-logo.svg" data-placeholder-src="./assets/images/workbox-logo.svg" data-test-src="./assets/images/workbox-cache-only.png"/>
+<img class="strategies" src="./assets/images/workbox-cache-only.png"/>
 
 ---
 

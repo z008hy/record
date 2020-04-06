@@ -117,3 +117,48 @@ addSub (sub: Watcher) {
 5. nextTick()
 6. flushSchedulerQueue()
 7. watcher.run()
+
+#### queueWatcher()
+queueWatcher 的目的是 将所有的 watcher 放到一个队列中。然后触发一次微任务。
+
+```js
+export function queueWatcher (watcher: Watcher) {
+  const id = watcher.id
+  if (has[id] == null) {
+    has[id] = true
+    if (!flushing) {
+      queue.push(watcher)
+    } else {
+      // 因为如果已经 flushing 那么 queue 是拍过顺序的，此处需要插入 watcher 到正确的顺序
+      let i = queue.length - 1
+      while (i > index && queue[i].id > watcher.id) {
+        i--
+      }
+      queue.splice(i + 1, 0, watcher)
+    }
+    // 在这里 保证只开启一次微任务 用 waiting 状态来加锁
+    if (!waiting) {
+      waiting = true
+
+      if (process.env.NODE_ENV !== 'production' && !config.async) {
+        flushSchedulerQueue()
+        return
+      }
+      nextTick(flushSchedulerQueue)
+    }
+  }
+}
+```
+#### nextTick()
+将 flushSchedulerQueue 放入本轮微任务的 callback 队列，触发本轮微任务的执行。
+
+#### flushSchedulerQueue()
+按照顺序执行 watcher，然后还原案发现场。
+
+1. 设置全局 flushing 状态为 true，优化在 queueWatcher 时 添加 watcher 的策略。flushing 过再插入需要按照正确的顺序插入。保证 render watcher 排在最后面。
+2. 将 queue 中的 watcher 排序，让 render watcher 放在最后面
+3. 循环 watcher 执行 watcher.run()
+4. 清空队列，重置状态（还原案发现场）
+
+#### watcher.run()
+获取当前 value ，执行 watcher 的 callback
